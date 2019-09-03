@@ -1,11 +1,19 @@
 #!/bin/bash
 
-db_server_name="db-server"
-db_name="some_db"
+export CONTAINER_NAME="db-server"
+export DB_NAME="some_db"
+export DB_USER="admin"
+export DB_PASS="admin123"
 
-docker stop $db_server_name
-docker rm $db_server_name
+docker stop $CONTAINER_NAME
+docker rm $CONTAINER_NAME
 
-docker build -t jackson.oliveira/mysql-db .
+docker build -t joliveira/mysql-db .
 
-docker run --name $db_server_name -e MYSQL_PASSWORD=admin123  -e MYSQL_USER=admin -e MYSQL_DATABASE=$db_name -e MYSQL_ROOT_PASSWORD=root123 -d jackson.oliveira/mysql-db:latest
+docker run --name $CONTAINER_NAME -e MYSQL_PASSWORD=admin123  -e MYSQL_USER=$DB_USER -e MYSQL_DATABASE=$DB_NAME -e MYSQL_ROOT_PASSWORD=$DB_PASS -d joliveira/mysql-db:latest
+
+sleep 5
+
+export DB_SERVER="$(docker inspect $CONTAINER_NAME -f '{{.NetworkSettings.IPAddress }}')"
+
+dotnet run 
