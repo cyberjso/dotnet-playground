@@ -1,0 +1,13 @@
+use some_db;
+
+CREATE TABLE SAMPLE (
+	ID INT NOT NULL,
+	NAME varchar(100) NULL,
+	DESCRIPTION varchar(100) NULL,
+	CONSTRAINT SAMPE_PK PRIMARY KEY (ID)
+)
+ENGINE=InnoDB
+DEFAULT CHARSET=utf8mb4
+COLLATE=utf8mb4_0900_ai_ci;
+
+insert into SAMPLE VALUES (1, "JHON", "This is the default user");
