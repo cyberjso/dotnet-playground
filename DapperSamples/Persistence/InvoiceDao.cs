@@ -23,9 +23,9 @@ namespace DapperSamples.Persistence
 
     public InvoiceEntity FindBy(int InvoiceId)
     {
-      string Sql1 = "select ID, NAME, DESCRIPTON from INVOICE where ID  = @InvoiceID; ";
-      string Sql2 = "select ID, QTD, PRICE from INVOICE_ITEMS where INVOICE_ID = @InvoiceID; ";
-      string Sql3 = "select SUM(ITEMS) as TotalItems, sum(PRICE) AS TotalInvoice from INVOICE_ITEMS  where INVOICE_ID = @InvoiceID";
+      string Sql1 = "select ID, NAME, DESCRIPTION from INVOICE as InvoiceInfo where ID  = @InvoiceID; ";
+      string Sql2 = "select ID, QTD, PRICE from INVOICE_DETAIL as InvoiceItem where INVOICE_ID = @InvoiceID; ";
+      string Sql3 = "select SUM(QTD) as TotalItems, sum(PRICE) AS TotalInvoice from INVOICE_DETAIL as Summary where INVOICE_ID = @InvoiceID";
       var result = connection.QueryMultiple(Sql1 + Sql2 + Sql3, new { InvoiceID = InvoiceId });
 
       return new InvoiceEntity

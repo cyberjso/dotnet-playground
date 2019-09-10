@@ -7,7 +7,7 @@ namespace DapperSamples.Controllers
 {
   [Route("api/[controller]")]
   [ApiController]
-  public class InvoicesControler : ControllerBase
+  public class InvoicesController : ControllerBase
   {
     private InvoiceDao InvoiceDao = new InvoiceDao();
 
