@@ -15,11 +15,9 @@ namespace HelloApi.Controllers
     [HttpGet]
     public ActionResult<IEnumerable<Hello>> Get()
     {
-      return new Hello[3]
+      return new Hello[1]
      {
-                new Hello(Id: "123", Name: "Jack", IsComplete: false),
-                new Hello(Id: "456", Name: "Jhon", IsComplete: true),
-                new Hello(Id: "789", Name: "Lisa", IsComplete: true),
+                new Hello(Id: "123", Name: "Jack", IsComplete: false)
      };
     }
 

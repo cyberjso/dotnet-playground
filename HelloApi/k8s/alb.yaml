@@ -1,0 +1,22 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: my-ingress-controller
+  annotations:
+    traefik.ingress.kubernetes.io/service-weights: |
+      hello-service: 75%
+      hello-service-v2: 25%    
+    name: hello-api  
+spec:
+  rules:
+  - host: alb.10.152.183.241.xip.io
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: hello-service
+          servicePort: http
+      - path: /  
+        backend:
+          serviceName: hello-service-v2
+          servicePort: http

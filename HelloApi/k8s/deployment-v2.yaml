@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-api-v2
+spec:
+  selector:
+    matchLabels:
+      app: hello-api-v2
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: hello-api-v2
+    spec:
+      containers:
+      - name: hello-api
+        image: dotnet-playground/hello-api:2.0.0-SNAPSHOT
+        ports:
+        - containerPort: 80
